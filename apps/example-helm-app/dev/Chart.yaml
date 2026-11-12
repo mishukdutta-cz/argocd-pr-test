@@ -1,0 +1,5 @@
+# Syntax: https://helm.sh/docs/topics/charts/
+# Makes this folder a Helm chart. Argo CD finds this file and uses Helm.
+apiVersion: v2
+name: example-helm-app
+version: 0.1.0

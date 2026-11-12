@@ -1,0 +1,22 @@
+# Syntax: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+# Deployment: keeps the app's pods running. If a pod stops, Kubernetes starts a new one.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-helm-app{{ .Values.nameSuffix }}
+spec:
+  selector: # The pods that belong to this Deployment: the ones with this label
+    matchLabels:
+      app: example-helm-app{{ .Values.nameSuffix }}
+  template: # PodTemplate: the plan for each pod that the Deployment starts
+    metadata:
+      labels:
+        app: example-helm-app{{ .Values.nameSuffix }} # Must match the selector
+    spec:
+      containers:
+        - name: example-helm-app{{ .Values.nameSuffix }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}" # From values.yaml
+          envFrom: # Each key in the Secret becomes an environment variable
+            - secretRef:
+                name: example-helm-app{{ .Values.nameSuffix }} # ESO creates this Secret (secrets.yaml)
+                optional: true # Test only: ESO cannot reach AWS in kind

@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-kustomize-app
+spec:
+  selector:
+    matchLabels:
+      app: example-kustomize-app
+  template:
+    metadata:
+      labels:
+        app: example-kustomize-app
+    spec:
+      containers:
+        - name: example-kustomize-app
+          image: nginx:latest
+          envFrom:
+            - secretRef:
+                name: example-kustomize-app
+                optional: true # Test only: ESO cannot reach AWS in kind, so the Secret never exists
