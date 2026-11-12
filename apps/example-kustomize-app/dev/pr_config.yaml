@@ -1,3 +1,4 @@
 codeRepo: https://github.com/mishukdutta-cz/argocd-pr-test
 tool: kustomize
-image: nginx
+images:
+  - imageName: nginx

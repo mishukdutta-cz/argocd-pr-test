@@ -1,3 +1,7 @@
 codeRepo: https://github.com/mishukdutta-cz/argocd-pr-test
 tool: helm
-image: nginx
+images:
+  - imageName: nginx
+    helm:
+      name: image.repository
+      tag: image.tag
