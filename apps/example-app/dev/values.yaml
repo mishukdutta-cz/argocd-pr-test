@@ -1,0 +1,4 @@
+nameSuffix: ""
+image:
+  repository: nginx
+  tag: latest
