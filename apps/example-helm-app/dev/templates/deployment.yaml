@@ -4,6 +4,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: example-helm-app{{ .Values.nameSuffix }}
+  labels:
+    test: config-pr # Config PR test: only the PR copy has this label
 spec:
   selector: # The pods that belong to this Deployment: the ones with this label
     matchLabels:
